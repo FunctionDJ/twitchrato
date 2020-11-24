@@ -4,6 +4,7 @@ const checkConfig = require("./check-config");
 const getConfig = require("./get-config");
 const fetch = require("node-fetch");
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const fs = require("fs").promises;
 
 (async () => {
   const config = await getConfig();
@@ -16,12 +17,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
     checkConfig(config, "twitch.token");
     checkConfig(config, "twitch.targetChannel");
     const { userName, token, targetChannel } = config.twitch;
-    console.log(`Logging into channel twitch.tv/${targetChannel}...}`);
+    console.log(`Logging into channel twitch.tv/${targetChannel}...`);
     twitchClient = await getTwitchClient(userName, token, targetChannel);
     console.log("Logged in!");
 
     twitchClient.on("message", (_channel, _tags, message) => {
-      if (lastCachedTrack && message.toLowerCase().trim() == "!song") {
+      if (lastCachedTrack && message.toLowerCase().trim() === "!song") {
         twitchClient.say(targetChannel, `Now playing: ${lastCachedTrack}`)
       }
     })
@@ -45,8 +46,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
   while (true) {
     let page;
-    // const url = `https://serato.com/playlists/${config.seratoUserName}/live`;
-    const url = "https://serato.com/playlists/DJ_MODESTY/the-real-hip-hop-show-n-272";
+    const url = `https://serato.com/playlists/${config.seratoUserName}/live`;
 
     try {
       page = await fetch(url);
@@ -71,6 +71,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
     if (lastTrack !== lastCachedTrack) {
       console.log(`New song: ${lastTrack}`)
+
+      if (config.writeTXT) {
+        await fs.writeFile("./current-song.txt", lastTrack);
+      }
     }
 
     lastCachedTrack = lastTrack;
