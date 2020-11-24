@@ -1,0 +1,9 @@
+{
+  "debugMode": false,
+  "seratoUserName": "",
+  "twitch": {
+    "userName": "",
+    "token": "",
+    "targetChannel": ""
+  }
+}

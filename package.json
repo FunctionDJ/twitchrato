@@ -1,0 +1,22 @@
+{
+  "name": "twitchrato",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "build": "pkg -t node14-win -o ./dist/twitchrato.exe main.js",
+    "postbuild": "cp ./config-empty.json ./dist/config.json",
+    "buildAndRun": "npm run build && cd dist && twitchrato.exe"
+  },
+  "author": "Function",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "node-html-parser": "^2.0.0",
+    "tmi.js": "^1.5.0"
+  },
+  "devDependencies": {
+    "pkg": "^4.4.9"
+  }
+}
