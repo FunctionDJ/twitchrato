@@ -11,6 +11,7 @@ Instructions:
   - your twitch token is the authorization token required to log into twitch chat. you can get a token for your own twitch account easily here: https://twitchapps.com/tmi/
   - the targetChannel is the channel you want to post in, which can be the same as your username, but doesn't have to
   - debugMode won't log into twitch chat and post messages (that's all it does right now)
+  - writeTXT will write the currently playing song to a currently-playing.txt to the same directory when the song updates. set to true or false.
 - run twitchrato.exe
 
 For developers:
