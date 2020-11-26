@@ -1,4 +1,4 @@
-name: Build and attach to tag on new tag
+name: Build and make new release on version tag
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  name: Build and make new release on version tag
   build:
     runs-on: ubuntu-latest
 
@@ -31,7 +32,7 @@ jobs:
       - name: Zip it
         uses: montudor/action-zip@v0.1.1
         with:
-          args: zip -qq -r twitchrato.zip build
+          args: zip -qq -r -j twitchrato.zip build
           
       - name: Release it
         id: create_release
