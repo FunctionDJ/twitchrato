@@ -1,10 +1,22 @@
 {
   "debugMode": false,
+  "mock": false,
   "seratoUserName": "",
   "twitch": {
     "userName": "",
     "token": "",
     "targetChannel": ""
   },
-  "writeTXT": false
+  "cooldown": 5,
+  "current-song": {
+    "autopost": false,
+    "command": "!song",
+    "template": "Now playing: %s",
+    "txtPath": ""
+  },
+  "previous-song": {
+    "command": "!lastsong",
+    "template": "Previous track: %s",
+    "txtPath": ""
+  }
 }
