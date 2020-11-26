@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: Build and make new release on version tag
   build:
+    name: Build and make new release on version tag
     runs-on: ubuntu-latest
 
     steps:
